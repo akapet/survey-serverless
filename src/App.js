@@ -30,8 +30,6 @@ class App extends Component {
   handleBackClicked = (e) => {
     let currentQuestionNumber = this.state.currentQuestionNumber;
 
-    console.log(`currentQuestionNumber: ${currentQuestionNumber}`);
-
     if (currentQuestionNumber > ONE) {
       this.setState((state, props) => ({
         currentQuestionNumber: state.currentQuestionNumber - ONE
@@ -55,7 +53,7 @@ class App extends Component {
         <Grid relaxed columns={2}  textAlign='center' style={{ height: '100%' }} verticalAlign='middle' padded="horizontally">
           <Question
             questionNumber={currentQuestionNumber}
-            question={questions[currentQuestionNumber - 1]}
+            question={questions[currentQuestionNumber - ONE]}
             totalQuestions={questions.length}
             handleNextClicked={this.handleNextClicked}
             handleBackClicked={this.handleBackClicked}
