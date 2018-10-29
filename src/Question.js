@@ -1,21 +1,27 @@
 import React, { Component } from 'react';
 import './App.css';
 import { Button, Grid, Header, Form, Divider, Checkbox, Icon, Progress } from 'semantic-ui-react'
+import Option from './Option'
 
 class App extends Component {
   constructor(props) {
    super(props);
    this.state = {
-     value: ""
+     selectedOption: ""
    };
  }
 
   handleChange = (e, { value }) => {
-    this.setState({ value });
+    this.setState({ selectedOption: value });
+  }
+
+  handleOptionChange = (e, value) => {
+    this.setState({ selectedOption: value });
   }
 
   render() {
-    let { questionNumber, question, totalQuestions} = this.props;
+    let { questionNumber, question, totalQuestions } = this.props;
+    let { selectedOption } = this.state;
 
     return (
         <Grid.Row style={{ maxWidth: 600 }} >
@@ -35,42 +41,10 @@ class App extends Component {
             <Divider hidden/>
             <Grid.Row>
               <Form>
-                <Form.Field>
-                  <Checkbox
-                    label='iPhone'
-                    name='checkboxRadioGroup'
-                    value='iPhone'
-                    checked={this.state.value === 'iPhone'}
-                    onChange={this.handleChange}
-                  />
-                </Form.Field>
-                <Form.Field>
-                  <Checkbox
-                    label='Android'
-                    name='checkboxRadioGroup'
-                    value='Android'
-                    checked={this.state.value === 'Android'}
-                    onChange={this.handleChange}
-                  />
-                </Form.Field>
-                <Form.Field>
-                  <Checkbox
-                    label='Windows Phone'
-                    name='checkboxRadioGroup'
-                    value='WindowsPhone'
-                    checked={this.state.value === 'WindowsPhone'}
-                    onChange={this.handleChange}
-                  />
-                </Form.Field>
-                <Form.Field>
-                  <Checkbox
-                    label='Other'
-                    name='checkboxRadioGroup'
-                    value='Other'
-                    checked={this.state.value === 'Other'}
-                    onChange={this.handleChange}
-                  />
-                </Form.Field>
+                <Option value="iPhone" selectedOption={selectedOption} handleChange={(value) => this.handleOptionChange(null, value)} />
+                <Option value="Android" selectedOption={selectedOption} handleChange={(value) => this.handleOptionChange(null, value)}/>
+                <Option value="Windows Phone" selectedOption={selectedOption} handleChange={(value) => this.handleOptionChange(null, value)}/>
+                <Option value="Other" selectedOption={selectedOption} handleChange={(value) => this.handleOptionChange(null, value)}/>
               </Form>
             </Grid.Row>
             <Divider hidden/>
@@ -88,7 +62,6 @@ class App extends Component {
             </Grid.Row>
           </Grid.Column>
         </Grid.Row>
-
     );
   }
 }

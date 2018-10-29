@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import './App.css';
-import { Button, Grid, Header, Form, Divider, Checkbox, Icon, Progress } from 'semantic-ui-react'
+import { Grid } from 'semantic-ui-react'
 import Question from './Question'
 
 class App extends Component {
@@ -19,7 +19,6 @@ class App extends Component {
 
   render() {
     let { currentQuestionNumber, questions } = this.state;
-    let title = questions[currentQuestionNumber - 1].Title;
 
     return (
       <div className="question-form">
@@ -32,7 +31,7 @@ class App extends Component {
         `}</style>
 
         <Grid relaxed columns={2}  textAlign='center' style={{ height: '100%' }} verticalAlign='middle' padded="horizontally">
-          <Question questionNumber={currentQuestionNumber} question={questions[currentQuestionNumber - 1]} 
+          <Question questionNumber={currentQuestionNumber} question={questions[currentQuestionNumber - 1]}
             totalQuestions={questions.length} />
         </Grid>
       </div>
