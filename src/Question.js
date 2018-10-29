@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import './App.css';
-import { Button, Grid, Header, Form, Divider, Icon, Progress } from 'semantic-ui-react'
+import { Button, Grid, Header, Form, Divider, Icon, Progress, Segment } from 'semantic-ui-react'
 import Option from './Option'
 
 class App extends Component {
@@ -53,10 +53,21 @@ class App extends Component {
             </Grid.Row>
             <Divider hidden/>
             <Grid.Row>
-              <Button icon labelPosition='right' color='grey'>
-                NEXT
-                <Icon name='right arrow' />
-              </Button>
+              <Segment basic>
+                {questionNumber > 1 &&
+                  <Button icon labelPosition='left' color='grey' floated='left' onClick={this.props.handleBackClicked}>
+                    BACK
+                    <Icon name='left arrow' />
+                  </Button>
+                }
+
+                {questionNumber < totalQuestions &&
+                  <Button icon labelPosition='right' color='orange' floated='right' onClick={this.props.handleNextClicked}>
+                    NEXT
+                    <Icon name='right arrow' />
+                  </Button>
+                }
+              </Segment>
             </Grid.Row>
             <Divider hidden/>
             <Grid.Row>

@@ -3,18 +3,40 @@ import './App.css';
 import { Grid } from 'semantic-ui-react'
 import Question from './Question'
 
+const ONE = 1;
+
 class App extends Component {
   constructor(props) {
    super(props);
+
    this.state = {
      value: "",
      questions: this.getQuestions(),
-     currentQuestionNumber: 1,
+     currentQuestionNumber: ONE,
    };
  }
 
-  handleChange = (e, { value }) => {
-    this.setState({ value });
+  handleNextClicked = (e) => {
+    let currentQuestionNumber = this.state.currentQuestionNumber;
+    let numberOfQuestions = this.state.questions.length;
+
+    if (currentQuestionNumber < numberOfQuestions) {
+      this.setState((state, props) => ({
+        currentQuestionNumber: state.currentQuestionNumber + ONE
+      }));
+    }
+  }
+
+  handleBackClicked = (e) => {
+    let currentQuestionNumber = this.state.currentQuestionNumber;
+
+    console.log(`currentQuestionNumber: ${currentQuestionNumber}`);
+
+    if (currentQuestionNumber > ONE) {
+      this.setState((state, props) => ({
+        currentQuestionNumber: state.currentQuestionNumber - ONE
+      }));
+    }
   }
 
   render() {
@@ -31,8 +53,13 @@ class App extends Component {
         `}</style>
 
         <Grid relaxed columns={2}  textAlign='center' style={{ height: '100%' }} verticalAlign='middle' padded="horizontally">
-          <Question questionNumber={currentQuestionNumber} question={questions[currentQuestionNumber - 1]}
-            totalQuestions={questions.length} />
+          <Question
+            questionNumber={currentQuestionNumber}
+            question={questions[currentQuestionNumber - 1]}
+            totalQuestions={questions.length}
+            handleNextClicked={this.handleNextClicked}
+            handleBackClicked={this.handleBackClicked}
+          />
         </Grid>
       </div>
     );
