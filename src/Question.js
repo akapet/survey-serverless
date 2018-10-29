@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import './App.css';
-import { Button, Grid, Header, Form, Divider, Checkbox, Icon, Progress } from 'semantic-ui-react'
+import { Button, Grid, Header, Form, Divider, Icon, Progress } from 'semantic-ui-react'
 import Option from './Option'
 
 class App extends Component {
@@ -22,6 +22,13 @@ class App extends Component {
   render() {
     let { questionNumber, question, totalQuestions } = this.props;
     let { selectedOption } = this.state;
+    let options = question.Options;
+
+    const optionsItems = options.map((option) =>
+      <Option key={option.Title.toString()} value={option.Title}
+        selectedOption={selectedOption} handleChange={(value) =>
+        this.handleOptionChange(null, value)} />
+    );
 
     return (
         <Grid.Row style={{ maxWidth: 600 }} >
@@ -41,10 +48,7 @@ class App extends Component {
             <Divider hidden/>
             <Grid.Row>
               <Form>
-                <Option value="iPhone" selectedOption={selectedOption} handleChange={(value) => this.handleOptionChange(null, value)} />
-                <Option value="Android" selectedOption={selectedOption} handleChange={(value) => this.handleOptionChange(null, value)}/>
-                <Option value="Windows Phone" selectedOption={selectedOption} handleChange={(value) => this.handleOptionChange(null, value)}/>
-                <Option value="Other" selectedOption={selectedOption} handleChange={(value) => this.handleOptionChange(null, value)}/>
+                {optionsItems}
               </Form>
             </Grid.Row>
             <Divider hidden/>
