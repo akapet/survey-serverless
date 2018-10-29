@@ -15,14 +15,13 @@ class App extends Component {
   }
 
   render() {
-    let { questionNumber, totalQuestions, title} = this.props;
+    let { questionNumber, question, totalQuestions} = this.props;
 
     return (
-
         <Grid.Row style={{ maxWidth: 600 }} >
           <Grid.Column verticalAlign="top" width={2} stretched={true}>
             <Grid.Row color="green" style={{height: "15em"}}>
-              <span style={{fontSize:"5em", color: "#3E3E3E"}}>1.</span>
+              <span style={{fontSize:"5em", color: "#3E3E3E"}}>{questionNumber}.</span>
             </Grid.Row>
           </Grid.Column>
           <Grid.Column width={14} textAlign="left">
@@ -31,7 +30,7 @@ class App extends Component {
             </Grid.Row>
 
             <Grid.Row>
-              <Header as="h1">{title}</Header>
+              <Header as="h1">{question.Title}</Header>
             </Grid.Row>
             <Divider hidden/>
             <Grid.Row>
