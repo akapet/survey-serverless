@@ -61,7 +61,7 @@ class App extends Component {
                   </Button>
                 }
 
-                {questionNumber < totalQuestions &&
+                {questionNumber <= totalQuestions &&
                   <Button icon labelPosition='right' color='orange' floated='right' onClick={this.props.handleNextClicked}>
                     NEXT
                     <Icon name='right arrow' />

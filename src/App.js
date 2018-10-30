@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import './App.css';
 import { Grid } from 'semantic-ui-react'
 import Question from './Question'
+import Complete from './Complete'
 
 const ONE = 1;
 
@@ -13,6 +14,7 @@ class App extends Component {
      value: "",
      questions: this.getQuestions(),
      currentQuestionNumber: ONE,
+     isSurveyCompleted: false
    };
  }
 
@@ -24,6 +26,10 @@ class App extends Component {
       this.setState((state, props) => ({
         currentQuestionNumber: state.currentQuestionNumber + ONE
       }));
+    } else if (currentQuestionNumber >= numberOfQuestions) {
+      this.setState({
+        isSurveyCompleted: true
+      });
     }
   }
 
@@ -38,7 +44,7 @@ class App extends Component {
   }
 
   render() {
-    let { currentQuestionNumber, questions } = this.state;
+    let { currentQuestionNumber, questions, isSurveyCompleted } = this.state;
 
     return (
       <div className="question-form">
@@ -51,13 +57,19 @@ class App extends Component {
         `}</style>
 
         <Grid relaxed columns={2}  textAlign='center' style={{ height: '100%' }} verticalAlign='middle' padded="horizontally">
-          <Question
-            questionNumber={currentQuestionNumber}
-            question={questions[currentQuestionNumber - ONE]}
-            totalQuestions={questions.length}
-            handleNextClicked={this.handleNextClicked}
-            handleBackClicked={this.handleBackClicked}
-          />
+          {!isSurveyCompleted && currentQuestionNumber <= questions.length &&
+            <Question
+              questionNumber={currentQuestionNumber}
+              question={questions[currentQuestionNumber - ONE]}
+              totalQuestions={questions.length}
+              handleNextClicked={this.handleNextClicked}
+              handleBackClicked={this.handleBackClicked}
+            />
+          }
+          { isSurveyCompleted === true &&
+            <Complete />
+          }
+
         </Grid>
       </div>
     );

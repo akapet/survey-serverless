@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import './App.css';
 import { Form, Checkbox } from 'semantic-ui-react'
 
-class App extends Component {
+class Option extends Component {
   handleChange = (e, { value }) => {
     this.props.handleChange(value);
   }
@@ -24,4 +24,4 @@ class App extends Component {
   }
 }
 
-export default App;
+export default Option;
