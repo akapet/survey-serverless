@@ -4,7 +4,8 @@ import {
 
 const survey = (state = {
   isRequested: false,
-  message: ""
+  message: "",
+  questions: []
 }, action) => {
   switch (action.type) {
     case REQUEST_QUESTIONS: {

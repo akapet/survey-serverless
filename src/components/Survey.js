@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types'
 
 import { Grid } from 'semantic-ui-react'
 import Question from './Question'
@@ -78,6 +79,11 @@ class Survey extends Component {
   getQuestions = () => {
     return [{"Id":1,"Title":"What phone do you use?","Options":[{"Title":"iPhone"},{"Title":"Android"},{"Title":"Windows Phone"}]},{"Id":2,"Title":"How old are you?","Options":[{"Title":"18 - 25 years old."},{"Title":"26 - 35 years old."},{"Title":"36 - 70 years old."},{"Title":"Over 70 years old."}]}];
   }
+}
+
+Survey.propTypes = {
+  questions: PropTypes.array.isRequired,
+  getQuestion: PropTypes.func.isRequired
 }
 
 export default Survey;

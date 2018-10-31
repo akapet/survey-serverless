@@ -1,24 +1,48 @@
 import { connect } from 'react-redux'
+import React, { Component } from 'react'
+import PropTypes from 'prop-types'
+
 import Survey from '../components/Survey'
-import { getQuestions } from '../actions/survey'
+import { getQuestions, getQuestion } from '../actions/survey'
+
+class SurveyContainer extends Component {
+  componentDidMount() {
+    this.props.dispatch(getQuestions())
+  }
+
+  render() {
+    const { questions, getQuestion } = this.props;
+
+    return (
+      <Survey questions={questions} getQuestion={getQuestion}/>
+    );
+  }
+}
 
 const mapStateToProps = (state, ownProps) => {
-  return {
+  const { survey } = state
 
+  return {
+    questions: survey.questions
   }
 }
 
 const mapDispatchToProps = (dispatch, ownProps) => {
   return {
-    getQuestions: () => {
-      dispatch(getQuestions())
+    dispatch,
+    getQuestion: (id) => {
+      console.log(`getting question for [${id}]`);
+      dispatch(getQuestion(id))
     }
   }
 }
 
-const SurveyContainer = connect(
+SurveyContainer.propTypes = {
+  questions: PropTypes.array.isRequired,
+  getQuestion: PropTypes.func.isRequired
+}
+
+export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(Survey)
-
-export default SurveyContainer
+)(SurveyContainer)
