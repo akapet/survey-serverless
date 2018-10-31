@@ -26,7 +26,7 @@ const survey = (state = {
       break;
     }
 
-    case REQUEST_QUESTION: {
+    case RECEIVE_QUESTIONS: {
       state = {
         ...state,
         isRequested: false,
@@ -35,10 +35,10 @@ const survey = (state = {
       break;
     }
 
-    case REQUEST_QUESTIONS: {
+    case REQUEST_QUESTION: {
       state = {
         ...state,
-        isRequested: true,
+        isRequested: false,
         message: ""
       }
       break;
