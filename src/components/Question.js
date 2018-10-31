@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import './App.css';
 import { Button, Grid, Header, Form, Divider, Icon, Progress, Segment } from 'semantic-ui-react'
 import Option from './Option'
 

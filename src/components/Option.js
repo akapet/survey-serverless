@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import './App.css';
 import { Form, Checkbox } from 'semantic-ui-react'
 
 class Option extends Component {
