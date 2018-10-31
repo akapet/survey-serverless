@@ -14,14 +14,12 @@ export function getQuestions() {
 
     dispatch(requestQuestions());
 
-    console.log(`requesting questions...`);
-
     axios
       .get(`${serverlessSurveyUrl}/questions`, {
         completed: false
       })
       .then(result => {
-        dispatch(recieveQuestions(result.data));
+        dispatch(receiveQuestions(result.data));
       })
       .catch(err => {
         dispatch(getQuestionsError(err.message));
@@ -48,10 +46,10 @@ function requestQuestionsError(message) {
   }
 }
 
-function recieveQuestions(json) {
+function receiveQuestions(questions) {
   return {
     type: RECEIVE_QUESTIONS,
-    json
+    questions: questions
   }
 }
 

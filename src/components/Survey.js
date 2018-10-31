@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types'
 
-import { Grid } from 'semantic-ui-react'
+import { Grid, Dimmer, Loader } from 'semantic-ui-react'
 import Question from './Question'
 import Complete from './Complete'
 
@@ -20,7 +20,7 @@ class Survey extends Component {
 
   handleNextClicked = (e) => {
     let currentQuestionNumber = this.state.currentQuestionNumber;
-    let numberOfQuestions = this.state.questions.length;
+    let numberOfQuestions = this.props.questions.length;
 
     if (currentQuestionNumber < numberOfQuestions) {
       this.setState((state, props) => ({
@@ -45,6 +45,15 @@ class Survey extends Component {
 
   render() {
     let { questions } = this.props;
+
+    if (!questions) {
+      return (
+        <Dimmer>
+          <Loader>Loading Questions...</Loader>
+        </Dimmer>
+      );
+    }
+
     let { currentQuestionNumber, isSurveyCompleted } = this.state;
 
     return (
@@ -74,10 +83,6 @@ class Survey extends Component {
         </Grid>
       </div>
     );
-  }
-
-  getQuestions = () => {
-    return [{"Id":1,"Title":"What phone do you use?","Options":[{"Title":"iPhone"},{"Title":"Android"},{"Title":"Windows Phone"}]},{"Id":2,"Title":"How old are you?","Options":[{"Title":"18 - 25 years old."},{"Title":"26 - 35 years old."},{"Title":"36 - 70 years old."},{"Title":"Over 70 years old."}]}];
   }
 }
 

@@ -31,7 +31,6 @@ const mapDispatchToProps = (dispatch, ownProps) => {
   return {
     dispatch,
     getQuestion: (id) => {
-      console.log(`getting question for [${id}]`);
       dispatch(getQuestion(id))
     }
   }
