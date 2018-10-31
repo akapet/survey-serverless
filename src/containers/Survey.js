@@ -1,5 +1,5 @@
 import { connect } from 'react-redux'
-import App from '../components/App'
+import Survey from '../components/Survey'
 import { getQuestions } from '../actions/survey'
 
 const mapStateToProps = (state, ownProps) => {
@@ -16,9 +16,9 @@ const mapDispatchToProps = (dispatch, ownProps) => {
   }
 }
 
-const AppContainer = connect(
+const SurveyContainer = connect(
   mapStateToProps,
   mapDispatchToProps
-)(App)
+)(Survey)
 
-export default AppContainer
+export default SurveyContainer

@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
-import Survey from './components/Survey'
+import SurveyContainer from './containers/Survey'
 
 class App extends Component {
   render() {
     return (
-      <Survey />
+      <SurveyContainer />
     );
   }
 }
