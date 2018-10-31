@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import { Button, Grid, Header, Form, Divider, Icon, Progress, Segment } from 'semantic-ui-react'
 import Option from './Option'
 
+const percentDivider = 100;
+
 class App extends Component {
   constructor(props) {
    super(props);
@@ -20,6 +22,8 @@ class App extends Component {
 
   render() {
     let { questionNumber, question, totalQuestions } = this.props;
+    let percent = ((questionNumber/totalQuestions) * percentDivider);
+
     let { selectedOption } = this.state;
     let options = question.Options;
 
@@ -70,8 +74,8 @@ class App extends Component {
             </Grid.Row>
             <Divider hidden/>
             <Grid.Row>
-              <Progress percent={50} size='tiny' indicating color='orange'>
-                <span style={{color:"grey", fontSize: "0.7em"}}>50%</span>
+              <Progress percent={percent} size='tiny' indicating color='orange'>
+                <span style={{color:"grey", fontSize: "0.7em"}}>{percent}%</span>
               </Progress>
             </Grid.Row>
           </Grid.Column>
