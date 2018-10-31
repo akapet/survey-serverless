@@ -13,7 +13,6 @@ class Survey extends Component {
 
    this.state = {
      value: "",
-     questions: this.getQuestions(),
      currentQuestionNumber: ONE,
      isSurveyCompleted: false
    };
@@ -45,7 +44,8 @@ class Survey extends Component {
   }
 
   render() {
-    let { currentQuestionNumber, questions, isSurveyCompleted } = this.state;
+    let { questions } = this.props;
+    let { currentQuestionNumber, isSurveyCompleted } = this.state;
 
     return (
       <div className="question-form">
